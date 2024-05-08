@@ -1,0 +1,114 @@
+<!-- Vainilla Javascript -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: black;
+        color: whitesmoke;
+      }
+    </style>
+    <main>
+      <button data-id="btn">No me gusta!</button>
+    </main>
+  </body>
+  <script>
+    // Codido imperativo, eso quiere decir que le digo a la maquina que hacer, es poco escalable 
+
+
+    // Funcion para actualizar el like
+    //     function toggleLike(id) {
+    //     // Aquí va tu código para manejar el "like"
+    //     alert(`Toggle like for id: ${id}`);
+    // }
+    //Recuperamos el boton
+    const button = document.querySelector("button");
+    //Añadimos un evento click - al hacer click en el boton se ejecuta la funcion
+
+    button.addEventListener("click", function () {
+    // Recuperamos la id del atributo del HTML
+    const id = button.getAttribute("data-id");
+
+    // Cambiamos el texto del botón
+    if (button.classList.contains("liked")) {
+        button.textContent = "No me gusta!";
+        button.classList.remove("liked");
+    } else {
+        button.textContent = "Me gusta!";
+        button.classList.add("liked");
+    }
+
+    // Llamar a un servicio para actualizar si me gusta
+    // toggleLike(id);
+})
+
+    //  button.addEventListener('click', () => {
+    //     // Creamos un div
+    //      const div = document.createElement('div');
+    //      //Le añadimos un texto
+    //      div.textContent = 'Hello World!';
+    //      //Añadimos el div al body
+    //      document.body.appendChild(div);
+    //  });
+  </script>
+</html>
+
+
+React 
+
+<div id="app"></div>
+
+
+
+
+const appDomElement = document.querySelector('#app');
+
+const root = ReactDOM.createRoot(appDomElement)
+
+<!-- En react cuando queremos crear un elemento usamos createElement y el nos pedira 3 parametros en el elemento que queremos crear, 
+el segundo parametro son las propiedades que queremos añadirle y el tercero es el contenido que queremos añadirle -->
+
+const button = React.createElement('button', {"data-id": 123}, 'me gusta!');
+const button2 = React.createElement('button', {"data-id": 456}, 'No me gusta!');
+const button 3= React.createElement('button', {"data-id": 789}, 'tal vez me gusta!');
+
+<!-- //Para renderizar el boton en el DOM, pero este solo deja renderizar un solo elemento
+//solucionamos estó  React.fragment -->
+<!-- root.render(
+  <button>No me gusta!</button>
+); -->
+
+const app = React.createElement('React.fragment', null, button, button2, button3);
+
+root.render(app);
+
+<!-- jsx
+<React.Fragment>
+    <button data-id="123">Me gusta!</button>
+    <button data-id="456">No me gusta!</button>
+    <button data-id="789">Tal vez me gusta!</button>
+</React.Fragment> -->

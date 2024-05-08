@@ -1,0 +1,55 @@
+// import React from 'react'
+
+//Cual es la diferencia entre un elemento y un componente en React?
+// un componenete es una factoria de elementos, un componente es una funcion que al ejecutarla te devuelve un elementos
+// y el elemento es que lo que renderiza en el DOM
+
+// Children es algo que envuelve algo que el elemento hijo va a renderizar
+
+// import "./App.css";
+// import TwiitterFollowCard from "./TwiitterFollowCard";
+
+//export function App() {
+  // Pasar funciones como props a componentes hijos para que puedan ser utilizadas en ellos
+  // const format = (userName) => `@${userName}`;
+
+  // Pasar elementos como props a componentes hijos para que puedan ser utilizados en ellos
+  // const formattedUserName = <span>@midudev</span>
+
+  /* pasar todas las props como un objeto para que sea mas facil de leer con el spread operator - es mala practica si no es necesario
+
+  const pheralb = {
+    isFollowing: true,
+    userName: "pheralb",
+    name: "Pablo Heralb",
+  };
+  */
+
+//    return (
+//     <section className="app">
+//       <TwiitterFollowCard
+//         //formattedUserName={formattedUserName}
+//         userName={"omidnikrah"}
+//         isFollowing
+//       >
+//         {/* Children */}
+//         <strong> Omid Nikrah </strong>
+//       </TwiitterFollowCard>
+
+//       <TwiitterFollowCard
+//         //formatUSerName={format}
+//         userName={"midudev"}
+//         name={"Miguel Dev"}
+//         isFollowing={false}
+//       />
+//       {/* Aqui le pasamos todas las props como un objeto */}
+//       <TwiitterFollowCard {...pheralb} />
+
+//       <TwiitterFollowCard
+//         userName={"julietsvqz"}
+//         name={"Juliana Saávedra"}
+//         isFollowing={false}
+//       />
+//     </section>
+//   );
+// }

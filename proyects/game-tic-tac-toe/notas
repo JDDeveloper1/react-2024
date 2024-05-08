@@ -1,0 +1,70 @@
+/* Qué hace el useState */
+/* useState es un hook que nos permite añadir estado a los componentes funcionales. */
+/* useState recibe un argumento que es el valor inicial del estado y devuelve un array con dos elementos. */
+/* El primer elemento es el valor actual del estado y el segundo es una función que nos permite actualizar ese estado. */
+/* const [count, setCount] = useState(0); */
+/* En este caso, count es el valor actual del estado y setCount es la función que nos permite actualizarlo. */
+/* setCount(1); */
+/* Con esta línea de código, estamos actualizando el estado count a 1. */
+/* const [count, setCount] = useState(0); */
+/* const handleClick = () => { 
+    setCount(count + 1)
+ }; */
+/* En este caso, estamos creando una función que se ejecutará cuando se haga click en un botón. */
+/* Dentro de la función, estamos actualizando el estado count sumándole 1. */
+
+
+
+
+/* Qué hace el useEffec */
+/* useEffect es un hook que nos permite ejecutar código cuando se monta, desmonta o actualiza un componente. */
+/* useEffect recibe dos argumentos, el primero es una función que se ejecutará y el segundo es un array de dependencias que si cambian, se ejecutará la función. */
+/* Si el array de dependencias está vacío, la función se ejecutará solo una vez. */
+/* Si no pasamos el segundo argumento, la función se ejecutará cada vez que el componente se actualice. */
+/* Si queremos que la función se ejecute solo cuando el componente se monte y desmonte, podemos pasar un array vacío como segundo argumento. */
+/* useEffect(() => {
+    console.log('Componente montado');
+    return () => {
+        console.log('Componente desmontado');
+    }
+}, []); */
+/* En este caso, estamos imprimiendo en consola 'Componente montado' cuando el componente se monta y 'Componente desmontado' cuando se desmonta. */
+/* useEffect(() => {
+    console.log('Componente actualizado');
+}); */
+/* En este caso, estamos imprimiendo en consola 'Componente actualizado' cada vez que el componente se actualiza. */
+/* useEffect(() => {
+    console.log('Componente montado');
+    return () => {
+        console.log('Componente desmontado');
+    }
+}, []); */
+/* En este caso, estamos imprimiendo en consola 'Componente montado' cuando el componente se monta y 'Componente desmontado' cuando se desmonta. */
+/* Si el array de dependencias está vacío, la función se ejecutará solo una vez, cuando el componente se monte. */
+/* useEffect(() => {
+    console.log('Componente actualizado');
+}); */
+/* En este caso, estamos imprimiendo en consola 'Componente actualizado' cada vez que el componente se actualiza. */
+/* Si no pasamos el segundo argumento, la función se ejecutará cada vez que el componente se actualice. */
+
+
+/* Ejemplo de uso de useState y useEffect */
+/* import React, { useState, useEffect } from 'react'; */
+/* const App = () => {
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        console.log('Componente montado');
+        return () => {
+            console.log('Componente desmontado');
+        }
+    }, []);
+    return (
+        <div>
+            <h1>{count}</h1>
+            <button onClick={() => setCount(count + 1)}>Incrementar</button>
+        </div>
+    );
+}; */
+/* En este caso, estamos creando un componente funcional que muestra un contador y un botón para incrementarlo. */
+/* Cuando el componente se monta, imprimimos en consola 'Componente montado' y cuando se desmonta, imprimimos 'Componente desmontado'. */
+/* Cada vez que se hace click en el botón, incrementamos el contador en 1. */
