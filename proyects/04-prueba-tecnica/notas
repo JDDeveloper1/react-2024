@@ -1,0 +1,69 @@
+
+
+import { useEffect, useState } from 'react'
+
+//CONSTANTES
+const CAT_ENDPOINT_FACT_URL = 'https://catfact.ninja/fact'
+//const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${threeFirstWords}?fontSize=:50&fontColor=:red&json=true`
+
+function App() {
+
+  const [fact, setFact] = useState()
+  const [imageUrl, setImageUrl] = useState()
+
+  // peticion sin usar reactQuery - Axios - apollo etc ...
+
+  //peticion con async para obtener el fact
+  // useEffect(() => {
+  //   async function getRandomFact () {
+  //     const res = await fetch(CAT_ENDPOINT_FACT_URL)
+  //     const json = await res.json()
+  //     setFact(json.fact)
+  //   }
+  //   getRandomFact()
+  // },[])
+
+  // peticion sin async function
+  useEffect(() => {
+    fetch(CAT_ENDPOINT_FACT_URL)
+      .then(response => response.json())
+      .then(data => {
+        const { fact } = data
+        setFact(fact)
+        // buscar la primera palabra del fact
+         //const firtsWord = fact.split(' ')[0]
+        // buscar 2 o mas palabras del fact
+        // const firtsWord = fact.split(' ').slice(0,3).join(' ') // slice: extrae un fragmento de un array segun los indices selecciones para unirlo con join de la forma que se desee
+       const threeFirstWords = fact.split(' ', 3).join(' ') //split: es un metodo que divide un objeto de tipo String en un array de cadenas mediante la separacion de la cadena en subcadenas
+       // console.log(threeFirstWords);
+
+        fetch(`https://cataas.com/cat/says/${threeFirstWords}?fontSize=50&fontColor=:red&json=true`)
+          .then(response => response.json())
+          .then(data => {
+            // console.log(data)
+            const { url } = data
+            setImageUrl(url)
+          })
+      })
+  }, [])
+
+  return (
+    <>
+      <header>
+        <h2>App de gatitos</h2>
+      </header>
+
+      <main>
+        <section>
+          <h3>Hechos sobre gatos</h3>
+          {/* Renderizado condicional  */}
+          {fact && <p>{fact}</p>}
+          {imageUrl && <img src={imageUrl} alt={`image extracted using the first trhee words for ${fact}`}/>}
+
+        </section>
+      </main>
+    </>
+  )
+}
+
+export default App
