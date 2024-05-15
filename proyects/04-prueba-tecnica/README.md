@@ -30,4 +30,9 @@ npm install react react-dom -E
 ```bash
 npm install standard -D 
 
+```bash
+npm init playwright@latest
+
+
+
 
