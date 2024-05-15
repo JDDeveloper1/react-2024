@@ -1,0 +1,4 @@
+
+// # Que son las custom hooks ?
+// Los custom hooks son funciones que nos permiten reutilizar lógica en diferentes componentes de nuestra aplicación. 
+// Los custom hooks siguen una convención de nombres, siempre deben empezar con la palabra use.
