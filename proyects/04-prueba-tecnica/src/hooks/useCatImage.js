@@ -12,5 +12,6 @@ export function useCatImage({ fact }) {
     setImageUrl(imageUrl);
   }, [fact]);
 
+
   return { imageUrl };
 }

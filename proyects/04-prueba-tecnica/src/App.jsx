@@ -1,7 +1,7 @@
 import "./App.css";
 import { useCatImage } from "./hooks/useCatImage";
 import { useCatFact } from "./hooks/useCatFact";
-import { Otro } from "./Components/Otro";
+// import { Otro } from "./Components/Otro";
 
 
 export default function App() {
