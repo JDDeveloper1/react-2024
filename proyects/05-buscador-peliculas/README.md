@@ -30,4 +30,9 @@ Primera iteración:
 
 ✅ Npm install 
 
-✅
+✅ Uso de  Water.css como frameWork clasless -  "Framework classless" o "frameworks sin clases" son hojas de estilo CSS que no imponen un estilo predefinido. En lugar de eso, proporcionan una base estilística neutra. No incluyen estilos para componentes de UI como botones, formularios, etc. En su lugar, proporcionan una base de estilos para elementos HTML sin clases.
+
+# API KEY
+https://www.omdbapi.com/?apikey=cc6b9bed&s=
+"s"	Yes		<empty>	Movie title to search for.
+

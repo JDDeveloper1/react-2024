@@ -1,0 +1,161 @@
+# useRef en React
+
+es una función que nos permite crear una referencia mutable que se puede utilizar para almacenar valores mutables que persiste en todo momento en tu componente en la propiedad .current.
+es decir que useRef nos permite acceder a un valor mutable que persiste en todo momento en el componente, sin necesidad de que el componente se vuelva a renderizar.
+un ejemplo de uso es para acceder a un elemento del DOM y modificarlo directamente.
+es similar a usar document.getElementById() o document.querySelector() pero con la ventaja de que no necesitamos buscar el elemento cada vez que queremos modificarlo.
+
+ejemplo de uso:
+se crea una referencia con useRef y se asigna a un elemento del DOM.
+luego se puede acceder a las propiedades del elemento directamente a través de la referencia.
+se puede modificar el elemento directamente sin necesidad de buscarlo en el DOM.
+
+# Ejemplo de uso de useRef para acceder a un elemento del DOM y modificarlo directamente
+
+```React component
+import React, { useRef } from 'react';
+
+function ExampleComponent() {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.value = 'New value';
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>Change Value</button>
+    </div>
+  );
+}
+```
+
+¨Otro ejemplo¨
+
+```React component
+css
+import { useRef } from 'react'
+import './App.css'
+components
+import { MoviesList } from './components/Movies'
+hooks
+import { useMovies } from './hooks/useMovies'
+
+
+
+
+
+
+function App() {
+  const { movies } = useMovies()
+  const inputRef = useRef()
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const inputEl = inputRef.current
+    const value = inputEl.value
+
+    console.log(value)
+  }
+
+
+
+  return (
+    <div className='page'>
+      <header>
+        <h1>Buscador de Películas</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="search">Buscar película</label>
+          <input ref={inputRef} type="text" placeholder="Avengers, Star Wars ..." />
+          <button type="submit">Buscar</button>
+        </form>
+      </header>
+      <main>0
+        <section>
+          <div >
+            <MoviesList className='component-movie' movies={movies} />
+          </div>
+
+        </section>
+      </main>
+
+
+    </div>
+  )
+}
+
+export default App
+```
+
+# Object.fromEntries Y Object.entries
+
+Object.fromEntries() convierte un objeto iterable en un objeto,
+en este caso un FormData en un objeto normal de javascript,
+para poder acceder a sus propiedades de manera más sencilla.
+Object.fromEntries() es el opuesto de Object.entries() que convierte un objeto en un array de arrays. es decir que podría
+convertir un objeto en un array de arrays y luego con Object.fromEntries() convertirlo en un objeto nuevamente.
+leería cada par de valores clave/valor y los convertiría en un objeto.(todos los inputs del formulario)
+también se puede usar Object.fromEntries() para convertir un Map en un objeto.
+nos ayuda a convertir un objeto iterable en un objeto normal de javascript.
+FormData es una interfaz que permite trabajar con los datos de un formulario HTML sin importar su método de envío (GET, POST, PUT, etc.)
+FormData es un objeto que permite enviar datos clave/valor como si fueran un formulario.
+
+Ejemplo de uso:
+
+```React component
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const fields = Object.fromEntries(
+      new window.FormData(event.target)
+    )
+
+    console.log(fields); -> repuesta {
+      query: "Avengers",
+      ad: "2021",
+      af: "2021"}
+  }
+
+      <form onSubmit={handleSubmit}>
+          <label htmlFor="search">Buscar película</label>
+          <input name='query' type="text" placeholder="Avengers, Star Wars ..." />
+          <input name='ad' type="text" placeholder="Avengers, Star Wars ..." />
+          <input name='af' type="text" placeholder="Avengers, Star Wars ..." />
+          <button type="submit">Buscar</button>
+        </form>
+```
+
+# Manejo de inputs en React de forma controlada
+
+esto significa que los valores de los inputs son controlados por el estado del componente.
+esto nos permite tener un control total sobre los valores de los inputs y poder modificarlos en cualquier momento.
+para manejar un input de forma controlada necesitamos un estado para almacenar el valor del input y un manejador de eventos para actualizar el estado.
+un input de forma controlada es un input cuyo valor es controlado por el estado del componente.
+esto significa que el valor del input es almacenado en el estado del componente y se actualiza cada vez que el usuario escribe en el input.
+desventaja es que se demora más en escribir en el input ya que cada vez que se escribe se actualiza el estado del componente.
+
+Ejemplo de uso:
+
+```React component
+import { useState } from 'react'
+
+ const [query, setQuery] = useState('')
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log({ query });
+  }
+
+  const handleChange = (event) => {
+    setQuery(event.target.value)
+  }
+
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="search">Buscar película</label>
+        <input onChange={handleChange} value={query} name='query' type="text" placeholder="Avengers, Star Wars ..." />
+        <button type="submit">Buscar</button>
+      </form>
+
+```
