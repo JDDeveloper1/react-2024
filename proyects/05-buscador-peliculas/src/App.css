@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
   max-width: 800px;
 }
 
@@ -17,19 +18,54 @@ header {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 
-section {
+@media screen and (max-width: 600px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+
+input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  form label,
+  input,
+  button {
+    width: 100%;
+  }
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+
+@media screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+main {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-
-
-main h2 {
-  text-align: center;
-}
 
 form {
   align-items: center;
@@ -39,7 +75,10 @@ form {
 
 form label {
   margin-right: 8px;
+  text-align: center;
 }
+
+
 
 .movies {
   list-style: none;

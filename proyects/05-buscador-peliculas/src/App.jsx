@@ -1,5 +1,5 @@
 //css
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 //components
 import { MoviesList } from './components/Movies'
@@ -10,8 +10,15 @@ function useSearch() {
   const [search, setSearch] = useState('')
   //  validación de errores con estado
   const [error, setError] = useState(null)
+  //  validación de campo vacío con referencia
+  const isFirstInput = useRef(true)
 
   useEffect(() => {
+    if (isFirstInput.current) {
+      isFirstInput.current = search === '' // true
+      return
+    }
+
     if (search === '') { //validación de campo vacío
       setError("Debes ingresar un texto para buscar películas")
       return
@@ -69,12 +76,7 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
-        <h2>Películas</h2>
-        <section>
-          <div >
-            <MoviesList className='component-movie' movies={movies} />
-          </div>
-        </section>
+        <MoviesList movies={movies} />
       </main>
     </div>
   )
