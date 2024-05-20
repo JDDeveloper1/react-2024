@@ -1,10 +1,15 @@
+// Dependencies
+import { useCallback, useEffect, useRef, useState } from 'react'
 //css
-import { useEffect, useRef, useState } from 'react'
 import './App.css'
 //components
 import { MoviesList } from './components/Movies'
-//hooks
+//custom hooks
 import { useMovies } from './hooks/useMovies'
+//debounce
+import debounce from "just-debounce-it"
+
+
 
 function useSearch() {
   const [search, setSearch] = useState('')
@@ -41,24 +46,45 @@ function useSearch() {
 }
 
 function App() {
-  const { movies } = useMovies()
+  const [sort, setSort] = useState(false)
+
 
   const { search, setSearch, error } = useSearch()
+  const { movies, getMovies, loading } = useMovies({ search, sort })
 
+  //debounce para evitar llamadas innecesarias al API
+  const debouncedGetMovies = useCallback(
+    debounce((search) => {
+      console.log('search', search);
+      getMovies({ search });
+    }, 300),
+    [getMovies]
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log({ search });
+    //console.log({ search });
+    getMovies({ search })
   }
+
+  const handleSort = () => {
+    setSort(!sort)
+  }
+
+
+  // const handleChange = (event) => {
+  //   const newQuery = event.target.value
+  //   if (newQuery.startsWith(' ')) return //validación de espacios en blanco al iniciar el campo
+  // esta validación ocurre antes de cambiar el estado para evitar que se muestre el error
+  //   setSearch(event.target.value)
+  //   getMoviesDebounced({ search: event.target.value }) // se llama a la función getMovies para que se actualice la lista de películas al escribir
+  // }
 
   const handleChange = (event) => {
-    const newQuery = event.target.value
-    if (newQuery.startsWith(' ')) return //validación de espacios en blanco al iniciar el campo
-    // esta validación ocurre antes de cambiar el estado para evitar que se muestre el error
-    setSearch(event.target.value)
+    const newSearch = event.target.value
+    setSearch(newSearch)
+    debouncedGetMovies(newSearch)
   }
-
-
 
   return (
     <div className='page'>
@@ -71,12 +97,15 @@ function App() {
           }} onChange={handleChange} value={search} name='query' type="text"
             placeholder="Avengers, Star Wars ..."
           />
+          <label htmlFor="sort">Ordenar alfabéticamente</label>
+          <input type="checkbox" onChange={handleSort} checked={sort} />
+
           <button type="submit">Buscar</button>
         </form>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
-        <MoviesList movies={movies} />
+        {loading ? <p>Cargando...</p> : <MoviesList movies={movies} />}
       </main>
     </div>
   )

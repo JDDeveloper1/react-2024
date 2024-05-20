@@ -4,7 +4,7 @@
 
 Crea una aplicación para buscar películas
 
-API a usar: - https://www.omdbapi.com/ Consigue la API Key en la propia página web registrando tu email.
+API a usar: - <https://www.omdbapi.com/> Consigue la API Key en la propia página web registrando tu email.
 
 Requerimientos:
 
@@ -26,13 +26,16 @@ Primera iteración:
 
 ✅ Evita que se haga la búsqueda continuamente al escribir (debounce)
 
-# install 
+# Install
 
-✅ Npm install 
+⬇️ Npm install
 
-✅ Uso de  Water.css como frameWork clasless -  "Framework classless" o "frameworks sin clases" son hojas de estilo CSS que no imponen un estilo predefinido. En lugar de eso, proporcionan una base estilística neutra. No incluyen estilos para componentes de UI como botones, formularios, etc. En su lugar, proporcionan una base de estilos para elementos HTML sin clases.
+⬇️ Uso de Water.css como frameWork classless - "Framework classless" o "frameworks sin clases" son hojas de estilo CSS que no imponen un estilo predefinido. En lugar de eso, proporcionan una base estilística neutra. No incluyen estilos para componentes de UI como botones, formularios, etc. En su lugar, proporcionan una base de estilos para elementos HTML sin clases.
+
+⬇️ uso de <https://github.com/angus-c/just> ( just debounce it ) para el debounce de la búsqueda de películas en la API.
+npm install just-debounce-it -E
 
 # API KEY
-https://www.omdbapi.com/?apikey=cc6b9bed&s=
-"s"	Yes		<empty>	Movie title to search for.
 
+🔑 <https://www.omdbapi.com/?apikey=cc6b9bed&s=>
+"s" Yes <empty> Movie title to search for.

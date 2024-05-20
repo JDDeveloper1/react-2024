@@ -159,3 +159,22 @@ import { useState } from 'react'
       </form>
 
 ```
+
+# useMemo en React
+
+nos permite memorizar el resultado de una función y evitar que se vuelva a ejecutar si las entradas no han cambiado.
+es útil cuando tenemos una función que es costosa de ejecutar y queremos evitar que se ejecute en cada renderizado.
+useMemo recibe una función y un array de dependencias y devuelve el resultado de la función.
+si las dependencias no han cambiado, useMemo devuelve el resultado memorizado.
+si las dependencias han cambiado, useMemo ejecuta la función y devuelve el resultado.
+useMemo es similar a useCallback pero en lugar de memorizar una función, memoriza el resultado de una función.
+useMemo es útil cuando queremos evitar que una función se ejecute en cada renderizado.
+
+# useCallback en React
+
+es un hook que nos permite memorizar una función y evitar que se vuelva a crear en cada renderizado.
+es útil cuando queremos evitar que una función se vuelva a crear en cada renderizado.
+useCallback recibe una función y un array de dependencias y devuelve la función memorizada.
+si las dependencias no han cambiado, useCallback devuelve la función memorizada.
+si las dependencias han cambiado, useCallback crea una nueva función y la devuelve.
+useCallback es similar a useMemo pero en lugar de memorizar el resultado de una función, memoriza la función en sí.
