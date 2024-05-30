@@ -1,0 +1,14 @@
+# MPAs (Multiple Page Application)
+Es un tipo de aplicación web que consiste en múltiples páginas HTML que se cargan individualmente por el navegador.
+En una MPA, cada página suele representar una sección diferente o una funcionalidad de la aplicación, como una página de inicio,
+una página de producto, una página de contacto, etc. Cuando un usuario navega entre páginas, el navegador solicita y
+carga un nuevo documento HTML desde el servidor, lo que resulta en una recarga completa de la página.
+
+
+ # SPAs (Single Page Applications)
+Es un tipo de aplicación web que funciona en una única página HTML y dinámicamente actualiza el contenido a medida que el usuario interactúa con la aplicación,
+sin tener que recargar la página completa
+
+las Single Page Applications son aplicaciones web que operan en una única página y ofrecen una experiencia de usuario más dinámica y 
+fluida al actualizar el contenido de forma interactiva sin necesidad de recargar la página completa.
+

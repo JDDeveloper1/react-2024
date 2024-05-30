@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["decrementar", "renderizar"]
+  "cSpell.words": ["decrementar", "dinámicamente", "PUSHSTATE", "renderizar"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }

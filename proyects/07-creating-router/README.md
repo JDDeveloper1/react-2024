@@ -15,3 +15,9 @@
 ✔️Hacer un i18n con las rutas
 ✔️Testing
 ✔️Publicar el paquete en NPM
+
+## 🚀 Instalación
+
+➡️ NPM install
+[//]: # (use the package simplecss.org)
+[//]: # ([Link to external stylesheet](https://cdn.simplecss.org/simple.min.css))
