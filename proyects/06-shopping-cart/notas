@@ -1,0 +1,149 @@
+# Notas
+
+- Prop Drilling
+
+  Prop drilling es un término que se refiere a la práctica de pasar datos a través de múltiples niveles de componentes en una aplicación de React.
+  Puede resultar en un código complicado y difícil de mantener, ya que cada componente tiene que recibir y pasar los datos necesarios a través de sus props,
+  incluso si no los necesita directamente.
+
+  Una solución común para evitar el prop drilling es el uso de Context en React,
+  que proporciona una forma de compartir datos entre componentes sin tener que pasarlos manualmente a través de props.
+
+- Context API React
+
+  La API de Context en React proporciona una forma de compartir datos entre componentes sin tener que pasarlos manualmente a través de props.
+  Permite a los componentes acceder a los datos de un "contexto" compartido sin tener que pasarlos explícitamente a través de sus props.
+
+  La API de Context consta de tres partes principales:
+
+  - El contexto en sí, que es un objeto que contiene los datos que se compartirán entre componentes.
+  - El componente de proveedor, que envuelve los componentes que necesitan acceder a los datos del contexto y proporciona esos datos a través de un prop especial llamado value.
+  - El componente de consumidor, que es un componente que accede a los datos del contexto proporcionados por el componente de proveedor.
+
+  Ejemplo:
+
+  ```jsx
+  // Crear un contexto
+  const MyContext = React.createContext();
+
+  // Crear un componente de proveedor
+  const MyProvider = (props) => {
+    const [data, setData] = useState("some data");
+
+    return (
+      <MyContext.Provider value={{ data, setData }}>
+        {props.children}
+      </MyContext.Provider>
+    );
+  };
+
+  // Crear un componente de consumidor
+  const MyConsumer = () => {
+    const { data, setData } = useContext(MyContext);
+
+    return (
+      <div>
+        <p>{data}</p>
+        <button onClick={() => setData("new data")}>Update Data</button>
+      </div>
+    );
+  };
+
+  // Usar el componente de proveedor para envolver los componentes que necesitan acceder a los datos del contexto
+  const App = () => {
+    return (
+      <MyProvider>
+        <MyConsumer />
+      </MyProvider>
+    );
+  };
+  ```
+
+  En este ejemplo, el componente MyProvider envuelve el componente MyConsumer y proporciona los datos del contexto a través del prop value.
+  El componente MyConsumer accede a los datos del contexto utilizando el hook useContext y puede actualizar los datos utilizando la función setData proporcionada por el contexto.
+
+- useId
+
+useId es un hook personalizado que genera un identificador único para un componente en React.
+Puede ser útil cuando se necesita un identificador único para un componente, por ejemplo, para asociar un elemento de formulario con una etiqueta.
+
+Ejemplo:
+
+```jsx
+const useId = () => {
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    setId(`id-${Math.random().toString(36).substr(2, 9)}`);
+  }, []);
+
+  return id;
+};
+
+const MyComponent = () => {
+  const id = useId();
+
+  return (
+    <div>
+      <label htmlFor={id}>Input:</label>
+      <input id={id} />
+    </div>
+  );
+};
+```
+
+En este ejemplo, el hook useId genera un identificador único utilizando Math.random() y lo asigna a un estado local.
+El componente MyComponent utiliza este identificador único para asociar un elemento de formulario con una etiqueta.
+
+- useReducer
+  es un hook que se utiliza para manejar el estado de un componente en React.
+  Permite definir un estado inicial y una función reductora que especifica cómo se actualiza el estado en respuesta a acciones.
+  Manejando el estado de una manera más compleja y estructurada que useState.
+  useReducer es útil cuando el estado de un componente tiene una forma más compleja o cuando se necesita realizar operaciones más avanzadas en el estado.
+  coge dos argumentos, el primero es una función reductora y el segundo es el estado inicial.
+  y devuelve un array con dos elementos, el estado actual y una función dispatch que se utiliza para enviar acciones a la función reductora.
+  como primer argumento de useReducer se pasa una función reductora que toma dos argumentos, el estado actual y una acción, y devuelve el nuevo estado.
+  como segundo argumento de useReducer se pasa el estado inicial.
+  la función dispatch se utiliza para enviar acciones a la función reductora, que actualiza el estado en respuesta a la acción.
+
+  Ejemplo:
+
+  ```jsx
+  const initialState = { count: 0 };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "increment":
+        return { count: state.count + 1 };
+      case "decrement":
+        return { count: state.count - 1 };
+      default:
+        return state;
+    }
+  };
+
+  const Counter = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+      <div>
+        <p>Count: {state.count}</p>
+        <button onClick={() => dispatch({ type: "increment" })}>
+          Increment
+        </button>
+        <button onClick={() => dispatch({ type: "decrement" })}>
+          Decrement
+        </button>
+      </div>
+    );
+  };
+  ```
+
+  en este ejemplo, se define un estado inicial con una propiedad count que se inicializa en 0.
+  se define una función reductora que toma el estado actual y una acción y devuelve el nuevo estado en respuesta a la acción.
+  se utiliza useReducer para manejar el estado del componente, pasando la función reductora y el estado inicial.
+  se utiliza la función dispatch para enviar acciones a la función reductora, que actualiza el estado en respuesta a la acción.
+  el componente Counter muestra el estado actual y proporciona botones para incrementar y decrementar el contador.
+  cuando se hace clic en un botón, se envía una acción a la función reductora para actualizar el estado en consecuencia.
+  y el componente se vuelve a renderizar con el nuevo estado.
+  al utilizar useReducer, se puede manejar el estado de una manera más estructurada y realizar operaciones más avanzadas en el estado.
